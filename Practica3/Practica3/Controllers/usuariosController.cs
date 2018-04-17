@@ -41,11 +41,7 @@ namespace Practica3.Controllers
             return View();
         }
 
-        // GET: usuarios/Login
-        public ActionResult Login()
-        {
-            return View();
-        }
+       
 
         // POST: usuarios/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -63,6 +59,63 @@ namespace Practica3.Controllers
 
             return View(usuario);
         }
+
+        // GET: usuarios/Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: usuarios/Login
+        //Método para consultar los datos de inicio de sesiòn de usuario
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "CodUsuario,NombreUsuario,Contraseña")] usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                //db.usuario.Add(usuario);
+                
+                usuario usuario1 = db.usuario.Find(usuario.CodUsuario);
+
+                if (usuario1 == null) {
+                    //return View("Account");
+                    return RedirectToAction("ErrorUsuario");
+                }
+
+                if (usuario1.NombreUsuario == usuario.NombreUsuario)
+                {
+                    if (usuario1.Contraseña == usuario.Contraseña)
+                    {
+                        return RedirectToAction("Valido");
+                    }
+                    else {
+                       
+                        return RedirectToAction("ErrorUsuario");
+                    }
+
+                }
+                else {
+                    return RedirectToAction("ErrorUsuario");
+                }
+                //return RedirectToAction("Index");
+            }
+
+            return View(usuario);
+        }
+
+        // GET: usuarios/ErrorUsuario
+        public ActionResult ErrorUsuario()
+        {
+            return View();
+        }
+
+        // GET: usuarios/Valido
+        public ActionResult Valido()
+        {     
+            return View();
+        }
+
 
         // GET: usuarios/Edit/5
         public ActionResult Edit(int? id)

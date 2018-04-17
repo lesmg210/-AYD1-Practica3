@@ -314,6 +314,8 @@
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
     <Content Include="Views\usuarios\Login.cshtml" />
+    <Content Include="Views\usuarios\ErrorUsuario.cshtml" />
+    <Content Include="Views\usuarios\Valido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

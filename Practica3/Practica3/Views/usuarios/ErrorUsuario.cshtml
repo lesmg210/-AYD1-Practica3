@@ -1,0 +1,14 @@
+﻿@model Practica3.Datos.usuario
+
+@{
+    ViewBag.Title = "ErrorUsuario";
+}
+
+<h2>[ERROR]Advertencia_de_Autenticación:</h2>
+
+<div>
+    <h3>Los datos de usuario ingresados no son correctos. Verifique que haya escrito bien su nombre de usuario.</h3>   
+</div>
+<p>
+    @Html.ActionLink("Back to Login", "Login")
+</p>
