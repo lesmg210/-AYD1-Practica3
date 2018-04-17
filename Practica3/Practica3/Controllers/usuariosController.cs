@@ -52,8 +52,16 @@ namespace Practica3.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.usuario.Any(x => x.NombreUsuario == usuario.NombreUsuario))
+                {
+                    ViewBag.DuplicateMessage = "El nombre de usuario ya existe!!";
+
+                    return View("Create", usuario);
+                }
+                
                 db.usuario.Add(usuario);
                 db.SaveChanges();
+                ViewBag.SuccessMessage = "Usuario registrado correctamente!!!";
                 return RedirectToAction("Index");
             }
 
@@ -83,10 +91,17 @@ namespace Practica3.Controllers
                     return RedirectToAction("ErrorUsuario");
                 }
 
+                if (usuario1.CodUsuario == 9999) {
+                    if (usuario1.NombreUsuario == "admin" && usuario1.Contraseña == "admin") {
+                        return RedirectToAction("Administrador", "Home");
+                    }
+                }
+
                 if (usuario1.NombreUsuario == usuario.NombreUsuario)
                 {
                     if (usuario1.Contraseña == usuario.Contraseña)
                     {
+                        ViewBag.SuccessMessage = "Usuario validado correctamente!!";
                         return RedirectToAction("Valido");
                     }
                     else {
@@ -102,6 +117,46 @@ namespace Practica3.Controllers
             }
 
             return View(usuario);
+        }
+
+        // POST: usuarios/Login
+        //Método para consultar los datos de inicio de sesiòn de usuario
+        
+        public Boolean Login2([Bind(Include = "CodUsuario,NombreUsuario,Contraseña")] usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                //db.usuario.Add(usuario);
+
+                usuario usuario1 = db.usuario.Find(usuario.CodUsuario);
+
+                if (usuario1 == null)
+                {
+                    //return View("Account");
+                    return false;
+                }
+
+                if (usuario1.NombreUsuario == usuario.NombreUsuario)
+                {
+                    if (usuario1.Contraseña == usuario.Contraseña)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return true;
+                }
+                //return RedirectToAction("Index");
+            }
+
+            return false;
         }
 
         // GET: usuarios/ErrorUsuario

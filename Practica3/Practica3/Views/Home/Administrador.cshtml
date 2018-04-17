@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "BanUsac 1.0 Administrador";
+}
+
+<div class="jumbotron">
+    <h1>Gestor de Administración</h1>
+    <p class="lead">Sección específica para administrar el sistema online bancario</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Cuentas</h2>
+        <p>
+            Área para poder crear cuentas bancarias y asignar a usuarios específicos.
+        </p>
+        <p>@Html.ActionLink("Crear nueva cuenta", "Create", "cuentas", routeValues: null, htmlAttributes: new { id = "cuentaNuevaLink" })</p>
+        <p>@Html.ActionLink("Ver cuentas existentes", "Index", "cuentas", routeValues: null, htmlAttributes: new { id = "listaCuentasLink" })</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Usuarios</h2>
+        <p>
+            Lista de usuarios registrados en base de datos.
+        </p>
+        <p>@Html.ActionLink("Catálogo de usuarios", "Index", "usuarios", routeValues: null, htmlAttributes: new { id = "catalogLink" })</p>
+    </div>
+   
+
+</div>

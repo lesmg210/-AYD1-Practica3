@@ -26,5 +26,12 @@ namespace Practica3.Controllers
 
             return View();
         }
+
+        public ActionResult Administrador()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
