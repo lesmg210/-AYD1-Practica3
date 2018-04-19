@@ -61,6 +61,38 @@ namespace Practica3.Controllers
             return View(cuenta);
         }
 
+      
+        //GET: cuentas/SaldoUsuario
+        public ActionResult SaldoUsuario(int? id) {
+
+
+               
+                cuenta cuenta1 = db.cuenta.Find(id);
+
+                if (cuenta1 == null)
+                {
+                    return HttpNotFound();
+                }
+
+               
+                    ViewBag.UsuarioCta = new SelectList(db.usuario, "CodUsuario", "NombreCompleto", cuenta1.UsuarioCta);
+                    Session["SaldoCuenta"] = cuenta1.MontoTotal;
+                    Session["CodCuenta"] = cuenta1.CodCuenta;
+                    Session["UsuarioCta"] = cuenta1.UsuarioCta;
+                    Session["Credito"] = cuenta1.credito;
+                    Session["Debido"] = cuenta1.debito;
+
+                    return RedirectToAction("Details", "cuentas");
+               
+            
+
+            
+                
+
+            
+        }
+
+
         // GET: cuentas/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,6 +108,8 @@ namespace Practica3.Controllers
             ViewBag.UsuarioCta = new SelectList(db.usuario, "CodUsuario", "NombreCompleto", cuenta.UsuarioCta);
             return View(cuenta);
         }
+
+
 
         // POST: cuentas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 

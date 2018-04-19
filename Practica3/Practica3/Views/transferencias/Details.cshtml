@@ -1,0 +1,42 @@
+﻿@model Practica3.Datos.transferencia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>transferencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuenta.CodCuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuenta.CodCuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuenta1.CodCuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuenta1.CodCuenta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CodTransferencia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -68,6 +68,63 @@ namespace Practica3.Controllers
             return View(usuario);
         }
 
+        //Metodo que verifica la existencia del usuario
+        public Boolean verificarUsuario(usuario usuario)
+        {
+            usuario usuario1 = db.usuario.Find(usuario.CodUsuario);
+
+            if (usuario1 == null)
+            {
+                return false;
+            }
+
+
+            if (usuario1.NombreUsuario == usuario.NombreUsuario)
+            {
+                if (usuario1.Contraseña == usuario.Contraseña)
+                {
+                    ViewBag.SuccessMessage = "Usuario validado correctamente!!";
+
+                    Session["CodUsuario"] = usuario1.CodUsuario;
+                    Session["NombreUsuario"] = usuario1.NombreUsuario;
+                    Session["NombreCompleto"] = usuario1.NombreCompleto;
+
+
+
+                    return true;
+                }
+                else
+                {
+
+                    return false;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+ 
+        }
+
+        //Verifica si es usuario administrador
+        public Boolean VerificarAdministrador(usuario usuario)
+        {
+            usuario usuario1 = db.usuario.Find(usuario.CodUsuario);
+
+            if (usuario1.CodUsuario == 9999)
+            {
+                if (usuario1.NombreUsuario == "admin" && usuario1.Contraseña == "admin")
+                {
+                    Session["NombreUsuario"] = usuario1.NombreUsuario;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // GET: usuarios/Login
         public ActionResult Login()
         {
@@ -83,7 +140,25 @@ namespace Practica3.Controllers
             if (ModelState.IsValid)
             {
                 //db.usuario.Add(usuario);
+
+                Boolean usuarioAdmin, usuarioNormal;
+                usuarioAdmin = VerificarAdministrador(usuario);
+
+                if (usuarioAdmin == true)
+                {
+                    return RedirectToAction("Administrador", "Home");
+                }
+                else {
+                    usuarioNormal = verificarUsuario(usuario);
+
+                    if (usuarioNormal == true)
+                    {
+                        return RedirectToAction("Valido");
+                    }
+                }
                 
+
+                /*
                 usuario usuario1 = db.usuario.Find(usuario.CodUsuario);
 
                 if (usuario1 == null) {
@@ -93,7 +168,9 @@ namespace Practica3.Controllers
 
                 if (usuario1.CodUsuario == 9999) {
                     if (usuario1.NombreUsuario == "admin" && usuario1.Contraseña == "admin") {
-                        return RedirectToAction("Administrador", "Home");
+                        Session["NombreUsuario"] = usuario1.NombreUsuario;
+                            
+                            return RedirectToAction("Administrador", "Home");
                     }
                 }
 
@@ -102,6 +179,13 @@ namespace Practica3.Controllers
                     if (usuario1.Contraseña == usuario.Contraseña)
                     {
                         ViewBag.SuccessMessage = "Usuario validado correctamente!!";
+
+                        Session["CodUsuario"] = usuario1.CodUsuario;
+                        Session["NombreUsuario"] = usuario1.NombreUsuario;
+                        Session["NombreCompleto"] = usuario1.NombreCompleto;
+
+                        
+
                         return RedirectToAction("Valido");
                     }
                     else {
@@ -114,14 +198,18 @@ namespace Practica3.Controllers
                     return RedirectToAction("ErrorUsuario");
                 }
                 //return RedirectToAction("Index");
+                */
             }
 
             return View(usuario);
         }
 
-        // POST: usuarios/Login
-        //Método para consultar los datos de inicio de sesiòn de usuario
+
         
+
+        // POST: usuarios/Login2
+        //Método para consultar los datos de inicio de sesiòn de usuario
+
         public Boolean Login2([Bind(Include = "CodUsuario,NombreUsuario,Contraseña")] usuario usuario)
         {
             if (ModelState.IsValid)
@@ -159,6 +247,17 @@ namespace Practica3.Controllers
             return false;
         }
 
+        //POST usuario/LogOut
+        public ActionResult LogOut() {
+
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
+        //PERFIL DE USUARIO
+        public ActionResult Perfil() {
+            return View();
+        }
         // GET: usuarios/ErrorUsuario
         public ActionResult ErrorUsuario()
         {

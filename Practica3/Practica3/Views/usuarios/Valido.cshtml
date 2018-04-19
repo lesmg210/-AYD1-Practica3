@@ -1,4 +1,5 @@
-﻿@model Practica3.Datos.usuario
+﻿
+@model Practica3.Datos.usuario
 
 @{
     ViewBag.Title = "Valido";
@@ -7,23 +8,30 @@
 <h2>Valido</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("LogOut", "usuarios", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>usuario</h4>
-    <hr />
+
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.CodUsuario)
 
     @Html.DisplayNameFor(model => model.NombreCompleto)
-    <h1> Bienvenido, </h1>
+}
+
+<div class="form-horizontal">
+    <h4>usuario</h4>
+    <hr />
+    <h1> Bienvenido, @Session["NombreUsuario"].ToString() </h1>
     @Html.DisplayFor(model => model.NombreCompleto)
-    <p><a class="btn btn-default" href="#">Ingresar a mi perfil &raquo;</a></p>
+    <p><a class="btn btn-default" href="@Url.Action("Perfil", "usuarios")">Ingresar a mi perfil &raquo;</a></p>
 
 </div>
-}
+
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("LogOut", "LogOut", "usuarios", routeValues: null, htmlAttributes: new { id = "logOutLink" })</li>
+    <li>@Session["NombreCompleto"].ToString()</li>
+
+</ul>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

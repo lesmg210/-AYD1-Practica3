@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Practica3.Datos.transferencia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="col-md-4">
+    <p>@Html.ActionLink("Volver Perfil Administrador", "Administrador", "Home", routeValues: null, htmlAttributes: new { id = "cuentasLink" })</p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cuenta.CodCuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cuenta1.CodCuenta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cuenta.CodCuenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cuenta1.CodCuenta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CodTransferencia }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CodTransferencia }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CodTransferencia })
+        </td>
+    </tr>
+}
+
+</table>

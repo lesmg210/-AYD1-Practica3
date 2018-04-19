@@ -25,6 +25,14 @@
         </p>
         <p>@Html.ActionLink("Catálogo de usuarios", "Index", "usuarios", routeValues: null, htmlAttributes: new { id = "catalogLink" })</p>
     </div>
-   
+    <div class="col-md-4">
+        <h2>Transferencias</h2>
+        <p>
+            Sección para crear transferencias
+        </p>
+        <p>@Html.ActionLink("Realizar Transferencia", "Create", "transferencias", routeValues: null, htmlAttributes: new { id = "hacerTransferenciaLink" })</p>
+        <p>@Html.ActionLink("Ver Transferencias", "Index", "transferencias", routeValues: null, htmlAttributes: new { id = "indexTransferLink" })</p>
+    </div>
+
 
 </div>
