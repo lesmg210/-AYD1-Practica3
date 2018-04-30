@@ -1,0 +1,2 @@
+C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\Practica3\Practica3\Unitarias\obj\Debug\Unitarias.csprojResolveAssemblyReference.cache
+C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\Practica3\Practica3\Unitarias\obj\Debug\Unitarias.csproj.CoreCompileInputs.cache
