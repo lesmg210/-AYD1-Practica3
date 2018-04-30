@@ -77,3 +77,5 @@ C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Prac
 C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\Practica3\Practica3\Practica3Tests\bin\Debug\System.Web.Razor.xml
 C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\Practica3\Practica3\Practica3Tests\bin\Debug\es\EntityFramework.SqlServer.resources.dll
 C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\Practica3\Practica3\Practica3Tests\bin\Debug\es\System.Web.Razor.resources.dll
+C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\[AYD1]Practica3\-AYD1-Practica3\Practica3\Practica3Tests\obj\Debug\Practica3Tests.dll
+C:\Users\LuisCarlos\Documents\Universidad\Análisis y Diseño 1\Laboratorio\Practicas\[AYD1]Practica3\-AYD1-Practica3\Practica3\Practica3Tests\obj\Debug\Practica3Tests.pdb
